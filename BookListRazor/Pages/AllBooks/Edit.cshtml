@@ -1,0 +1,42 @@
+﻿@page
+@model BookListRazor.Pages.AllBooks.EditModel
+
+
+<div class="my-3"></div>
+<hr class="rule" />
+<h2 class="text-center text-warning">Edit Book</h2>
+<hr class="rule" />
+<div class="border p-4 my-3">
+    <form method="post">
+        <input type="hidden" asp-for="Book.Id" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="col-md-6 offset-md-3">
+            <div class="form-group">
+                <label class="font-weight-bold" asp-for="Book.Name"></label>
+                <input type="text" asp-for="Book.Name" class="form-control" />
+                <span class="text-danger" asp-validation-for="Book.Name"></span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" asp-for="Book.Author"></label>
+                <input type="text" asp-for="Book.Author" class="form-control" />
+                <span class="text-danger" asp-validation-for="Book.Author"></span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" asp-for="Book.ISBN"></label>
+                <input type="text" asp-for="Book.ISBN" class="form-control" />
+                <span class="text-danger" asp-validation-for="Book.ISBN"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update Book" class="btn btn-success" />
+            </div>
+            <div class="form-group">
+                <a asp-page="Index">Back to Books &raquo;</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    <partial name="Shared/_ValidationScriptsPartial" />
+}

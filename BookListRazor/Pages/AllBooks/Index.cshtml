@@ -1,0 +1,54 @@
+﻿@page
+@using System.Linq
+@model BookListRazor.Pages.AllBooks.IndexModel
+
+
+<div class="row my-3">
+    <div class="col-8">
+        <h2 class="text-primary">All Books</h2>
+    </div>
+    <div class="col-4">
+        <a asp-page="Create" class="btn btn-primary btn-block">Add New Book</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form method="post">
+            @if (Model.Books.Count() > 0)
+            {
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>
+                            <label asp-for="Books.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Books.FirstOrDefault().Author"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+
+                    @foreach (var item in Model.Books)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => item.Name)</td>
+                            <td>@Html.DisplayFor(m => item.Author)</td>
+                            <td>@Html.DisplayFor(m => item.ISBN)</td>
+                            <td>
+                                <button asp-page-handler="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete???')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p class="text-danger">No Book Available.</p>
+            }
+        </form>
+    </div>
+</div>
